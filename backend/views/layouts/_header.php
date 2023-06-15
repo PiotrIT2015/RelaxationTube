@@ -9,7 +9,7 @@ use yii\bootstrap4\NavBar;
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'shadow navbar-expand-md',
+            'class' => 'shadow navbar-expand-md navbar-light bg-light',
         ],
     ]);
     $menuItems = [
