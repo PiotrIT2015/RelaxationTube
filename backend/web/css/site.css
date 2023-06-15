@@ -3,6 +3,14 @@ body{
     height: 100%;
 }
 
+main{
+    flex: 1;
+}
+
+aside{
+    min-width: 200px;
+}
+
 .nav-pills .nav-link{
     border-radius: 0;
     color: #444444;

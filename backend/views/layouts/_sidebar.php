@@ -2,9 +2,11 @@
 
 ?>
 
+<aside class="shadow">
+
 <div class="jumbotron text-center bg-transparent">
         <div class="container">
-
+            
 <?php echo \yii\bootstrap4\Nav::widget([
     'options' => [
       'class' => 'd-flex flex-column nav-pills'
@@ -20,6 +22,8 @@
       ]
     ]
 ])?>
-
+          
       </div>
 </div>
+
+</aside>
