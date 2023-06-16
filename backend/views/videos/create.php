@@ -13,8 +13,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="upload-icon">
+            <i class="fa-solid fa-upload fa-2xl" style="color: #1f5122;"></i>
+        </div>
+
+        <p>Przeciągnij i upuść pliki wideo, które chcesz przesłać
+        <p>
+
+        <p class="text-muted">Twoje filmy będą prywatne, dopóki ich nie opublikujesz.</p>
+
+        <button class="btn btn-primary btn-file">
+            Select File
+            <input type="file" id="videoFile" name="video">
+        </button>
+    </div>
 
 </div>
