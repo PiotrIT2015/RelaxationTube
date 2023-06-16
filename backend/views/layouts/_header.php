@@ -13,7 +13,7 @@ use yii\bootstrap4\NavBar;
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Create', 'url' => ['/site/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
@@ -26,7 +26,7 @@ use yii\bootstrap4\NavBar;
             ]
         ];
     }
-    echo \yii\helpers\Url::to(['/site/logout']);
+    //echo \yii\helpers\Url::to(['/site/logout']);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav ml-auto'],
         'items' => $menuItems,
