@@ -18,7 +18,7 @@
       ],
       [
         'label' => 'Videos',
-        'url' => ['/video/index']
+        'url' => ['/videos/index']
       ]
     ]
 ])?>
