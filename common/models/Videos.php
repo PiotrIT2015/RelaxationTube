@@ -23,6 +23,10 @@ use Yii;
 class Videos extends \yii\db\ActiveRecord
 {
     /**
+     * @var \yii\web\UploadedFile
+     */
+    public $video;
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -36,6 +40,7 @@ class Videos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['video'], 'file', 'skipOnEmpty' => false, 'extensions' => 'mp4'],
             [['video_id', 'title'], 'required'],
             [['description'], 'string'],
             [['status', 'has_thumbnail', 'created_at', 'updated_at', 'created_by'], 'integer'],
@@ -82,5 +87,28 @@ class Videos extends \yii\db\ActiveRecord
     public static function find()
     {
         return new \common\models\query\VideosQuery(get_called_class());
+    }
+
+    public function save($runValidation=true, $attributeNames=null)
+    {
+        $isInsert = $this->isNewRecord;
+        if($isInsert){
+            $this->video_id = Yii::$app->security->generateRandomString(8);
+            $this->title = $this->video->name;
+            $this->video_name = $this->video->name;
+        }
+        $saved = parent::save($runValidation,$attributeNames);
+        if(!$saved){
+            return false;
+        }
+        if($isInsert){
+            $videoPath = Yii::getAlias('@frontend/web/storage/videos/'.$this->video_id.'.mp4');
+            if(!is_dir(dirname($videoPath))){
+                FileHelper::createDirectory(dirname($videoPath));
+            }
+            $this->video->saveAs($videoPath);
+        }
+
+        return true;
     }
 }

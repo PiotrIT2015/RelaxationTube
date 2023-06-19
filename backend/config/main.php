@@ -17,6 +17,10 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+                'multipart/form-data' => 'yii\web\MultipartFormDataParser',
+            ],
         ],
         'user' => [
             'identityClass' => 'common\models\User',
