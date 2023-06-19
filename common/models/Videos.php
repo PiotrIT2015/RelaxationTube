@@ -4,6 +4,8 @@ namespace common\models;
 
 use Yii;
 
+use yii\helpers\FileHelper;
+
 /**
  * This is the model class for table "{{%videos}}".
  *
