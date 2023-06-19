@@ -32,6 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
             Select File
             <input type="file" id="videoFile" name="video">
         </button>
+
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
         <?php \yii\bootstrap4\ActiveForm::end() ?>
     </div>
 
