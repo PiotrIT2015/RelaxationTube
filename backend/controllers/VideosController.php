@@ -85,7 +85,7 @@ class VideosController extends Controller
 
        
             if (Yii::$app->request->isPost && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->video_id]);
+                return $this->redirect(['view', 'video_id' => $model->video_id]);
             }
         
 
