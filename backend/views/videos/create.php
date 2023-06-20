@@ -32,8 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'video')->fileInput(['id' => 'videoFile'])->label('Select File') ?>
         </div>
 
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-
         <?php \yii\bootstrap4\ActiveForm::end() ?>
     </div>
 

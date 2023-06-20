@@ -2,6 +2,6 @@
 $(function(){
     'use strict';
     $('#videoFile').change(ev => {
-        ($ev.target).closest('form').trigger('submit');
+        $(ev.target).closest('form').trigger('submit');
     })
 })();
