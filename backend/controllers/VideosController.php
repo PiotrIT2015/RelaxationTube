@@ -81,13 +81,14 @@ class VideosController extends Controller
     {
         $model = new Videos();
         
-        $model->video=UploadedFile::getInstanceByName('video');
+        $model->video=UploadedFile::getInstanceByName('Videos[video]');
 
-       
             if (Yii::$app->request->isPost && $model->save()) {
                 return $this->redirect(['view', 'video_id' => $model->video_id]);
             }
         
+           
+
 
 
         return $this->render('create', [
