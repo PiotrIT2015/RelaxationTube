@@ -110,10 +110,10 @@ class Videos extends \yii\db\ActiveRecord
         if($isInsert){
             $videoPath = Yii::getAlias('@frontend/web/storage/videos/'.$this->video_id.'.mp4');
             $permissions = 0777;
+            chmod($videoPath, $permissions);
             if(!is_dir(dirname($videoPath))){
                 FileHelper::createDirectory(dirname($videoPath));
             }
-            chmod($videoPath, $permissions);
             $this->video->saveAs($videoPath);
         }
 
