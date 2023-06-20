@@ -93,7 +93,10 @@ class Videos extends \yii\db\ActiveRecord
 
     public function save($runValidation=true, $attributeNames=null)
     {
-        
+        echo '<pre>';
+        var_dump($this->video);
+        echo '</pre>';
+
         $isInsert = $this->isNewRecord;
         if($isInsert){
             $this->video_id = Yii::$app->security->generateRandomString(8);
@@ -106,9 +109,11 @@ class Videos extends \yii\db\ActiveRecord
         }
         if($isInsert){
             $videoPath = Yii::getAlias('@frontend/web/storage/videos/'.$this->video_id.'.mp4');
+            $permissions = 0777;
             if(!is_dir(dirname($videoPath))){
                 FileHelper::createDirectory(dirname($videoPath));
             }
+            chmod($videoPath, $permissions);
             $this->video->saveAs($videoPath);
         }
 
