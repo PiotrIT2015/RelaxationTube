@@ -93,6 +93,10 @@ class Videos extends \yii\db\ActiveRecord
 
     public function save($runValidation=true, $attributeNames=null)
     {
+        echo '<pre>';
+        var_dump($this->video);
+        echo '</pre>';
+        
         $isInsert = $this->isNewRecord;
         if($isInsert){
             $this->video_id = Yii::$app->security->generateRandomString(8);
