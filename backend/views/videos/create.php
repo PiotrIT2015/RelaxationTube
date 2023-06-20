@@ -29,8 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
 
         <div class="form-group">
-            <?= $form->field($model, 'video')->fileInput(['id' => 'videoFile'])->label('Select File') ?>
+            <input type="file" id="videoFile" class="form-control-file is-valid" name="Videos[video]">
+            
         </div>
+
+       
 
         <?php \yii\bootstrap4\ActiveForm::end() ?>
     </div>
