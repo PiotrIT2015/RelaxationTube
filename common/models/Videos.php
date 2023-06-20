@@ -103,20 +103,24 @@ class Videos extends \yii\db\ActiveRecord
             $this->title = $this->video->name;
             $this->video_name = $this->video->name;
         }
-        $saved = parent::save($runValidation,$attributeNames);
+        
+        $saved = parent::save($runValidation, $attributeNames);
+
         if(!$saved){
             return false;
         }
         if($isInsert){
-            $videoPath = Yii::getAlias('@frontend/web/storage/videos/'.$this->video_id.'.mp4');
-            $permissions = 0777;
-            chmod($videoPath, $permissions);
-            if(!is_dir(dirname($videoPath))){
-                FileHelper::createDirectory(dirname($videoPath));
+            $filePath = Yii::getAlias('@frontend/web/storage/videos/');
+            if(!is_dir(dirname($filePath))){
+                FileHelper::createDirectory($filePath);
             }
+            $permissions = 0777;
+            chmod($filePath, $permissions);
+            $videoPath = Yii::getAlias('@frontend/web/storage/videos/'.$this->video_id.'.mp4');
             $this->video->saveAs($videoPath);
         }
 
         return true;
     }
+
 }
