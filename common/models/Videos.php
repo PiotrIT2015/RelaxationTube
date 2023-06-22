@@ -91,35 +91,41 @@ class Videos extends \yii\db\ActiveRecord
         return new \common\models\query\VideosQuery(get_called_class());
     }
 
-    public function save($runValidation=true, $attributeNames=null)
-    {
-        echo '<pre>';
-        var_dump($this->video);
-        echo '</pre>';
+    public function save($runValidation = true, $attributeNames = null)
+{
+    echo '<pre>';
+    var_dump($this->video);
+    echo '</pre>';
 
-        $isInsert = $this->isNewRecord;
-        if($isInsert){
-            $this->video_id = Yii::$app->security->generateRandomString(8);
-            $this->title = $this->video->name;
-            $this->video_name = $this->video->name;
-        }
-        
-        $saved = parent::save($runValidation, $attributeNames);
-
-        if(!$saved){
-            return false;
-        }
-        if($isInsert){
-            $filePath = Yii::getAlias('@frontend/web/storage/videos/');
-            $permissions = 0777;
-            if(!is_dir(dirname($filePath))){
-                FileHelper::createDirectory($filePath, $mode=$permissions, $recursive=true);
-            }
-            $videoPath = Yii::getAlias('@frontend/web/storage/videos/'.$this->video_id.'.mp4');
-            $this->video->saveAs($videoPath);
-        }
-
-        return true;
+    $isInsert = $this->isNewRecord;
+    if ($isInsert) {
+        $this->video_id = Yii::$app->security->generateRandomString(8);
+        $this->title = $this->video->name;
+        $this->video_name = $this->video->name;
     }
+
+    $saved = parent::save($runValidation, $attributeNames);
+
+    if (!$saved) {
+        return false;
+    }
+
+    if ($isInsert) {
+        $filePath = Yii::getAlias('@frontend/web/storage/videos/');
+        $permissions = 0777;
+
+        FileHelper::createDirectory($filePath, $permissions, true);
+
+        $videoPath = Yii::getAlias($filePath . $this->video_id . '.mp4');
+        if ($this->video instanceof \yii\web\UploadedFile) {
+            $this->video->saveAs($videoPath);
+        } else {
+            // Handle the case when $this->video is not set or is not an UploadedFile
+            // You may throw an exception or handle it based on your requirements.
+        }
+    }
+
+    return true;
+}
 
 }
