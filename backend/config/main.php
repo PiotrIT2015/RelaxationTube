@@ -48,6 +48,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'http://studio.yii-application.test/'=>'http://studio.yii-application.test:8000/',
             ],
         ],
 
