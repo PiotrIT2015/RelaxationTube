@@ -97,35 +97,39 @@ class Videos extends \yii\db\ActiveRecord
     var_dump($this->video);
     echo '</pre>';
 
+    //die();
+
     $isInsert = $this->isNewRecord;
-    if ($isInsert) {
-        $this->video_id = Yii::$app->security->generateRandomString(8);
-        $this->title = $this->video->name;
-        $this->video_name = $this->video->name;
+if ($isInsert) {
+    $this->video_id = Yii::$app->security->generateRandomString(8);
+    $this->title = $this->video->name;
+    $this->video_name = $this->video->name;
+}
+
+$saved = parent::save($runValidation, $attributeNames);
+
+if (!$saved) {
+    return false;
+}
+
+if ($isInsert) {
+    $filePath = Yii::getAlias('@frontend/web/storage/videos/');
+    $permissions = 0777;
+
+    FileHelper::createDirectory($filePath, $permissions, true);
+
+
+    $videoPath = $filePath . $this->video_id . '.mp4';
+    if ($this->video instanceof \yii\web\UploadedFile) {
+        $this->video->saveAs($videoPath);
+    } else {
+        // Handle the case when $this->video is not set or is not an UploadedFile
+        // You may throw an exception or handle it based on your requirements.
     }
+}
 
-    $saved = parent::save($runValidation, $attributeNames);
+return true;
 
-    if (!$saved) {
-        return false;
-    }
-
-    if ($isInsert) {
-        $filePath = Yii::getAlias('@frontend/web/storage/videos/');
-        $permissions = 0777;
-
-        FileHelper::createDirectory(dirname($filePath), $permissions, true);
-
-        $videoPath = Yii::getAlias(dirname($filePath) . $this->video_id . '.mp4');
-        if ($this->video instanceof \yii\web\UploadedFile) {
-            $this->video->saveAs($videoPath);
-        } else {
-            // Handle the case when $this->video is not set or is not an UploadedFile
-            // You may throw an exception or handle it based on your requirements.
-        }
-    }
-
-    return true;
 }
 
 }
