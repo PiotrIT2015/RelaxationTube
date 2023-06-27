@@ -11,26 +11,38 @@ use yii\bootstrap4\ActiveForm;
 <div class="videos-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    
+    <div class="row">
+        <div class="col-sm-8">
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'video_id')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'tags')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+        </div>
+        <div class="col-sm-4">
+            
+            <div class="embed-responsive embed-responsive-16by9">
+                <video class="embeded-responsive-item" src="<?php echo $model->getVideoLink() ?>" controls></video>
+            </div>
 
-    <?= $form->field($model, 'tags')->textInput(['maxlength' => true]) ?>
+            <div class="mb-3">
+                <div class="text-muted">Video Link</div>
+                <a href="<?php echo $model->getVideoLink() ?>">
+                    Open Video
+                </a>
+            </div>
 
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'has_thumbnail')->textInput() ?>
-
-    <?= $form->field($model, 'video_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
+            
+            <div class="mb-3">
+                <div class="text-muted">Video Name</div>
+                <?php echo $model->video_name ?>
+            </div>
+        
+            <?= $form->field($model, 'status')->textInput() ?>
+        </div>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

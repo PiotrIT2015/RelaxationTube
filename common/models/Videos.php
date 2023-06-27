@@ -152,4 +152,9 @@ return true;
 
 }
 
+public function getVideoLink()
+{
+    return Yii::$app->params['frontendUrl'].'storage/videos/'.$this->video_id.'.mp4';
+}
+
 }
