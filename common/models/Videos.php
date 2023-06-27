@@ -6,6 +6,10 @@ use Yii;
 
 use yii\helpers\FileHelper;
 
+use yii\behaviors\TimestampBehavior;
+use yii\behaviors\BlameableBehavior;
+
+
 /**
  * This is the model class for table "{{%videos}}".
  *
@@ -34,6 +38,17 @@ class Videos extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return '{{%videos}}';
+    }
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+            [
+                'class' => BlameableBehavior::class,
+                'updatedByAttribute' => false
+            ]
+        ];
     }
 
     /**
