@@ -108,7 +108,7 @@ class VideosController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'video_id' => $model->video_id]);
+            return $this->redirect(['update', 'video_id' => $model->video_id]);
         }
 
         return $this->render('update', [
