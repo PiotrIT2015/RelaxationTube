@@ -168,12 +168,12 @@ if ($isInsert) {
 if($this->thumbnail){
     $thumbnailfilePath = Yii::getAlias('@frontend/web/storage/thumbs/');
     $permissions = 0777;
-    if(!is_dir(dirname($thumbnailfilePath))){
-        FileHelper::createDirectory($thumbnailfilePath, $permissions, true);
-    }
+   
+    FileHelper::createDirectory($thumbnailfilePath, $permissions, true);
     
-    $thumbnailPath = $thumbnailfilePath . $this->video_id . '.mp4';
-    if ($this->video instanceof \yii\web\UploadedFile) {
+    
+    $thumbnailPath = $thumbnailfilePath . $this->video_id . '.jpg';
+    if ($this->thumbnail instanceof \yii\web\UploadedFile) {
         $this->thumbnail->saveAs($thumbnailPath);
     } else {
         // Handle the case when $this->video is not set or is not an UploadedFile
