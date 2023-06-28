@@ -36,6 +36,10 @@ class Videos extends \yii\db\ActiveRecord
      */
     public $video;
     /**
+     * @var \yii\web\UploadedFile
+     */
+    public $thumbnail;
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -89,6 +93,7 @@ class Videos extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'created_by' => 'Created By',
+            'thumbnail' => 'Thumbnail'
         ];
     }
 
@@ -134,6 +139,10 @@ if ($isInsert) {
     $this->video_name = $this->video->name;
 }
 
+if($this->thumbnail){
+    $this->has_thumbnail = 1;
+}
+
 $saved = parent::save($runValidation, $attributeNames);
 
 if (!$saved) {
@@ -150,6 +159,22 @@ if ($isInsert) {
     $videoPath = $filePath . $this->video_id . '.mp4';
     if ($this->video instanceof \yii\web\UploadedFile) {
         $this->video->saveAs($videoPath);
+    } else {
+        // Handle the case when $this->video is not set or is not an UploadedFile
+        // You may throw an exception or handle it based on your requirements.
+    }
+}
+
+if($this->thumbnail){
+    $thumbnailfilePath = Yii::getAlias('@frontend/web/storage/thumbs/');
+    $permissions = 0777;
+    if(!is_dir(dirname($thumbnailfilePath))){
+        FileHelper::createDirectory($thumbnailfilePath, $permissions, true);
+    }
+    
+    $thumbnailPath = $thumbnailfilePath . $this->video_id . '.mp4';
+    if ($this->video instanceof \yii\web\UploadedFile) {
+        $this->thumbnail->saveAs($thumbnailPath);
     } else {
         // Handle the case when $this->video is not set or is not an UploadedFile
         // You may throw an exception or handle it based on your requirements.

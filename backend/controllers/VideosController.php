@@ -107,6 +107,8 @@ class VideosController extends Controller
     {
         $model = $this->findModel($id);
 
+        $model->thumbnail = UploadedFile::getInstanceByName('thumbnail');
+
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['update', 'id' => $model->video_id]);
         }

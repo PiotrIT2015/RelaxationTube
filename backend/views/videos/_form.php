@@ -10,13 +10,23 @@ use yii\bootstrap4\ActiveForm;
 
 <div class="videos-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'options'=>['enctype'=>'multipart/form-data']
+    ]); ?>
     
     <div class="row">
         <div class="col-sm-8">
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+            <div class="form-group">
+                <label><?php echo $model->getAttributeLabel('thumbnail')?></label>
+                <div class="custom-file">
+                    <label for="thumbnail" class="custom-file-label">Choose file</label>
+                    <input class="custom-file-input" type="file" id="thumbnail" name="thumbnail">
+                </div>
+            </div>
 
             <?= $form->field($model, 'tags')->textInput(['maxlength' => true]) ?>
 
