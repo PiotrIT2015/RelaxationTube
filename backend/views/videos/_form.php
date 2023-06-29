@@ -16,6 +16,9 @@ use yii\bootstrap4\ActiveForm;
     
     <div class="row">
         <div class="col-sm-8">
+
+            <?php echo $form->errorSummary($model) ?>
+
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
             <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
@@ -24,7 +27,7 @@ use yii\bootstrap4\ActiveForm;
                 <label><?php echo $model->getAttributeLabel('thumbnail')?></label>
                 <div class="custom-file">
                     <label for="thumbnail" class="custom-file-label">Choose file</label>
-                    
+
                     <input class="custom-file-input" type="file" id="thumbnail" name="thumbnail" value="<?php echo $model->getThumbnailLink(); ?>">
                 </div>
             </div>
