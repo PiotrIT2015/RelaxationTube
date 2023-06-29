@@ -9,6 +9,8 @@ use yii\helpers\FileHelper;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
+use Imagine\Image;
+use Imagine\Image\Box;
 
 /**
  * This is the model class for table "{{%videos}}".
@@ -73,7 +75,7 @@ class Videos extends \yii\db\ActiveRecord
             [['video_id'], 'unique'],
             ['has_thumbnail','default', 'value'=>0],
             ['status','default','value'=>self::STATUS_UNLISTED],
-            ['thumbnail','image', 'minWidth'=>3000],
+            ['thumbnail','image', 'minWidth'=>1280],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
@@ -176,6 +178,10 @@ if($this->thumbnail){
     $thumbnailPath = $thumbnailfilePath . $this->video_id . '.jpg';
     if ($this->thumbnail instanceof \yii\web\UploadedFile) {
         $this->thumbnail->saveAs($thumbnailPath);
+        Image::getImagine()
+            ->open($thumbnailPath)
+            ->thumbnail(new Box(1280,1280))
+            ->save();
     } else {
         // Handle the case when $this->video is not set or is not an UploadedFile
         // You may throw an exception or handle it based on your requirements.
