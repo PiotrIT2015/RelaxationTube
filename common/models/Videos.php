@@ -64,7 +64,7 @@ class Videos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['video'], 'file', 'skipOnEmpty' => false, 'extensions' => 'mp4'],
+            [['video'], 'file', 'skipOnEmpty' => true, 'extensions' => 'mp4'],
             [['video_id', 'title'], 'required'],
             [['description'], 'string'],
             [['status', 'has_thumbnail', 'created_at', 'updated_at', 'created_by'], 'integer'],
