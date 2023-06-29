@@ -76,6 +76,7 @@ class Videos extends \yii\db\ActiveRecord
             ['has_thumbnail','default', 'value'=>0],
             ['status','default','value'=>self::STATUS_UNLISTED],
             ['thumbnail','image', 'minWidth'=>1280],
+            ['video','file', 'extensions'=>['mp4']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
