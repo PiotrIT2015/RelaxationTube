@@ -28,6 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'options' => ['enctype' => 'multipart/form-data']
         ]) ?>
 
+        <?php echo $form->errorSummary($model) ?>
+
         <div class="form-group">
             <input type="file" id="videoFile" class="form-control-file is-valid" name="Videos[video]">
             
