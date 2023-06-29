@@ -24,9 +24,7 @@ use yii\bootstrap4\ActiveForm;
                 <label><?php echo $model->getAttributeLabel('thumbnail')?></label>
                 <div class="custom-file">
                     <label for="thumbnail" class="custom-file-label">Choose file</label>
-                    <?php 
-                    die(var_dump($model->getThumbnailLink())); 
-                    ?>
+                    
                     <input class="custom-file-input" type="file" id="thumbnail" name="thumbnail" value="<?php echo $model->getThumbnailLink(); ?>">
                 </div>
             </div>
