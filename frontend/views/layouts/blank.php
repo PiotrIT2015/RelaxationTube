@@ -17,7 +17,7 @@ $this->beginContent('@backend/views/layouts/base.php');
 <?php echo $this->render('_header') ?>
 
 <main role="main" class="d-flex">
-<?php echo $this->render('_sidebar') ?>
+
     <div class="content-wrapper p-3">
         <?= Alert::widget() ?>
         <?= $content ?> 
