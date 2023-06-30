@@ -52,7 +52,9 @@ class VideosController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Videos::find(),
+            'query' => Videos::find()
+                ->creator(Yii::$app->user->id)
+                ->latest(),
             /*
             'pagination' => [
                 'pageSize' => 50
