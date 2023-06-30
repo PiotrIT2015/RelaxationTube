@@ -10,6 +10,8 @@ use yii\filters\VerbFilter;
 use Yii;
 use yii\web\UploadedFile;
 
+use yii\filters\AccessControl;
+
 /**
  * VideosController implements the CRUD actions for Videos model.
  */
@@ -23,6 +25,15 @@ class VideosController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class'=>AccessControl::class,
+                    'rules'=>[
+                        [
+                            'allow'=>true,
+                            'roles'=>['@']
+                        ]
+                    ]
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
