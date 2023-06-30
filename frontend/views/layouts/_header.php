@@ -12,10 +12,8 @@ use yii\bootstrap4\NavBar;
             'class' => 'shadow navbar-expand-md navbar-light bg-light',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Create', 'url' => ['/videos/create']],
-    ];
     if (Yii::$app->user->isGuest) {
+        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         $menuItems[] = [
