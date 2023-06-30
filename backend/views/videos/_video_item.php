@@ -5,7 +5,7 @@ use yii\helpers\StringHelper;
 ?>
 
 <div class="media">
-    <div class="embed-responsive embed-responsive-16by9 mr-3" style="width: 140px">
+    <div class="embed-responsive embed-responsive-16by9 mr-2" style="width: 120px">
         <video class="embeded-responsive-item" 
         poster="<?php echo $model->getThumbnailLink() ?>"
         src="<?php echo $model->getVideoLink() ?>" ></video>
