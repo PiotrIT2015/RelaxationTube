@@ -3,9 +3,8 @@
 /** @var \yii\web\View $this */
 /** @var string $content */
 
-use backend\assets\AppAsset;
-use common\widgets\Alert;
-use yii\bootstrap4\Breadcrumbs;
+use frontend\assets\AppAsset;
+
 use yii\bootstrap4\Html; 
 
 AppAsset::register($this);

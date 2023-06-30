@@ -13,12 +13,12 @@
     ],
     'items' => [
       [
-        'label' => 'Dashboard',
+        'label' => 'Home',
         'url' => ['/site/index']
       ],
       [
-        'label' => 'Videos',
-        'url' => ['/videos/index']
+        'label' => 'History',
+        'url' => ['/videos/history']
       ]
     ]
 ])?>

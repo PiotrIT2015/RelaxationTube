@@ -8,7 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
-    'name' => 'Relaxation Space',
+    //'name' => 'Relaxation Space',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
@@ -45,6 +45,10 @@ return [
                 'http://yii-application.test/'=>'http://yii-application.test:8000/',
             ],
         ],
+
+        'assetManager' => [
+            'appendTimestamp' => true
+        ]
         
     ],
     'params' => $params,

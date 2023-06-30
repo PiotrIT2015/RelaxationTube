@@ -3,13 +3,10 @@
 /** @var \yii\web\View $this */
 /** @var string $content */
 
-use backend\assets\AppAsset;
-use common\widgets\Alert;
-use yii\bootstrap4\Breadcrumbs;
-use yii\bootstrap4\Html; 
 
-AppAsset::register($this);
-$this->beginContent('@backend/views/layouts/base.php');
+use common\widgets\Alert;
+
+$this->beginContent('@frontend/views/layouts/base.php');
 ?>
 
 <div class="wrap h-100 d-flex flex-column">
