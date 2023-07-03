@@ -53,8 +53,8 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'yii\grid\ActionColumn',
                 'buttons' => [
-                    'delete'=>function($model){
-                        return Html::a('Delete',Url::to(['/storage/videos/', $model=>'video_id']),[
+                    'delete'=>function($url){
+                        return Html::a('Delete',$url,[
                             'data-method'=>'post'
                         ]);
                     }
