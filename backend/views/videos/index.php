@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'buttons' => [
                     'delete' => function ($url, $model) {
                         $action = 'delete';
-                        $params = [$action, 'video_id' => $model->video_id];
+                        $params = ['videos/',$action];                    //, 'video_id' => $model->video_id];
                         $url = Yii::$app->urlManager->createUrl($params);
                         
                         return Html::a(
