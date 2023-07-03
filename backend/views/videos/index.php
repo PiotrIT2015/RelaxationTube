@@ -44,11 +44,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'created_at:datetime',
             'updated_at:datetime',
             //'created_by',
+            //[
+            //    'class' => ActionColumn::className(),
+            //    'urlCreator' => function ($action, Videos $model, $key, $index, $column) {
+            //        return Url::toRoute([$action, 'video_id' => $model->video_id]);
+            //     }     
+            //],
             [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Videos $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'video_id' => $model->video_id]);
-                 }
+                'class' => 'yii\grid\ActionColumn',
+                'buttons' => [
+                    'delete'=>function($model){
+                        return Html::a('Delete',Url::to(['/storage/videos/', $model=>'video_id']),[
+                            'data-method'=>'post'
+                        ]);
+                    }
+                 ]
             ],
         ],
     ]); ?>
