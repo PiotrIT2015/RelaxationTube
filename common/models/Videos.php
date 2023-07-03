@@ -203,4 +203,20 @@ public function getThumbnailLink()
     return $this->has_thumbnail ? Yii::$app->params['frontendUrl'].'/storage/thumbs/'.$this->video_id.'.jpg' : ' ';
 }
 
+public function afterDelete()
+{
+    parent::afterDelete();
+
+    $filePath = Yii::getAlias('@frontend/web/storage/videos/');
+    $videoPath = $filePath . $this->video_id . '.mp4';
+    unlink($videoPath);
+
+    $thumbnailfilePath = Yii::getAlias('@frontend/web/storage/thumbs/');
+    $thumbnailPath = $thumbnailfilePath . $this->video_id . '.jpg';
+    if(file_exists($thumbnailPath)){
+        unlink($thumbnailPath);
+    }
+    
+}
+
 }
