@@ -52,14 +52,27 @@ $this->params['breadcrumbs'][] = $this->title;
             //],
             [
                 'class' => 'yii\grid\ActionColumn',
+                'template' => '{delete}',
                 'buttons' => [
-                    'delete'=>function($url){
-                        return Html::a('Delete',$url,[
-                            'data-method'=>'post'
-                        ]);
+                    'delete' => function ($url, $model) {
+                        $action = 'delete';
+                        $params = [$action, 'video_id' => $model->video_id];
+                        $url = Yii::$app->urlManager->createUrl($params);
+                        
+                        return Html::a(
+                            '<span class="glyphicon glyphicon-trash"></span>',
+                            $url,
+                            [
+                                'title' => Yii::t('yii', 'Delete'),
+                                'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                'data-method' => 'post',
+                                'class' => 'btn btn-danger btn-xs',
+                            ]
+                        );
                     }
-                 ]
-            ],
+                ]
+            ],            
+            
         ],
     ]); ?>
 
