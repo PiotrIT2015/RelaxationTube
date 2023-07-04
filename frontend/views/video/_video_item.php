@@ -1,14 +1,18 @@
 <?php
 
+use \yii\helpers\Url;
+
 /** @var $model \common\model\Videos*/
 ?>
 
 <div class="card m-3" style="width: 14rem;">
-<div class="embed-responsive embed-responsive-16by9">
+    <a href="<?php echo Url::to(['/video/view', 'id'=> $model->video_id]) ?>">
+    <div class="embed-responsive embed-responsive-16by9">
                 <video class="embeded-responsive-item" 
                 poster="<?php echo $model->getThumbnailLink() ?>"
                 src="<?php echo $model->getVideoLink() ?>" ></video>
             </div>
+    </a>
   <div class="card-body p-2">
     <h6 class="card-title m-0"><?php echo $model->title ?></h6>
     <p class="text-muted card-text m-0">
