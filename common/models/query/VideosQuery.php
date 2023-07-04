@@ -2,6 +2,8 @@
 
 namespace common\models\query;
 
+use common\models\Videos;
+
 /**
  * This is the ActiveQuery class for [[\common\models\Videos]].
  *
@@ -40,5 +42,10 @@ class VideosQuery extends \yii\db\ActiveQuery
     public function latest()
     {
         return $this->orderBy(['created_at'=>SORT_DESC]);
+    }
+
+    public function published()
+    {
+        return $this->andWhere(['status'=>Videos::STATUS_PUBLISHED]);
     }
 }

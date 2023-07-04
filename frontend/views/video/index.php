@@ -1,4 +1,7 @@
 <?php
-
+/** @var $dataProvider \yii\data\ActiveDataProvider */
 ?>
-index
+
+<?php echo \yii\widgets\ListView::widget([
+    'dataProvider' => $dataProvider
+]) ?>
