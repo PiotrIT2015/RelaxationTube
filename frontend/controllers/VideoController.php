@@ -35,7 +35,7 @@ class VideoController extends Controller
         $videoView->video_id=$id;
         $videoView->user_id=Yii::$app->user->id;
         $videoView->created_at=time();
-        $VideoView->save();
+        $videoView->save();
 
         return $this->render('view', [
             'model' => $video
