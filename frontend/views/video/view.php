@@ -1,5 +1,7 @@
 <?php
 
+use \yii\helpers\Url;
+
 /**@var $model \common\models\Videos */
 ?>
 
@@ -16,12 +18,11 @@
                     <?php echo $model->getViews()->count()?> views ⚫ <?php echo Yii::$app->formatter->asDate($model->created_at) ?>
                 </div>
                 <div>
-                    <button class="btn btn-sm btn-outline-primary">
-                        <i class="fa-regular fa-thumbs-up"></i> 9
-                    </button>
-                    <button class="btn btn-sm btn-outline-secondary">
-                        <i class="fa-regular fa-thumbs-down"></i> 3
-                    </button>
+                    <?php \yii\widgets\Pjax::begin() ?>
+                    <?php echo $this->render('_buttons', [
+                        'model' => $model
+                    ]) ?>
+                    <?php \yii\widgets\Pjax::end() ?>
                 </div>
             </div>
     </div>
