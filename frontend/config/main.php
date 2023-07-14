@@ -44,6 +44,7 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'http://yii-application.test/'=>'http://yii-application.test:8000/',
+                '/c/<username>' => '/channel/view'
             ],
         ],
 
