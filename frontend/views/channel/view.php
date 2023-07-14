@@ -1,13 +1,15 @@
 <?php
 
+/**@var $this \yii\web\view */
 /**@var $channel \common\models\User */
 ?>
 
 <div class="jumbotron">
   <h1 class="display-4"><?php echo $channel->username ?></h1>
   <hr class="my-4">
-  <a class="btn btn-danger" href="#" role="button">
-    Subscribe <i class="fa-regular fa-bell" style="color: #eceaea;"></i>
-  </a>
-  
+  <?php \yii\widgets\Pjax::begin() ?>
+    <?php echo $this->render('_subscribe',[
+        'channel'=>$channel
+    ]) ?>  
+  <?php \yii\widgets\Pjax::end() ?>
 </div>
