@@ -23,7 +23,6 @@ use yii\web\IdentityInterface;
  * @property integer $updated_at
  * @property string $password write-only password
  *
- * @property User $user
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -67,7 +66,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getSubscribers()
     {
-        return $this->hasMany($user, ['id'=>'user_id'])->viaTable('subscriber', ['channel_id'=>'id']);
+        return $this->hasMany(User::class, ['id'=>'user_id'])->viaTable('subscriber', ['channel_id'=>'id']);
     }
 
     /**
