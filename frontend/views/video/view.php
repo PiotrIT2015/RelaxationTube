@@ -27,9 +27,7 @@ use \yii\helpers\Url;
             </div>
         <div>
             <p>
-                <?php echo \yii\helpers\Html::a($model->createdBy->username, [
-                    '/channel/view', 'username' => $model->createdBy->username
-                ]) ?>
+                <?php echo \common\helpers\Html::channelLink($model->createdBy) ?>
             </p>
             <?php echo \yii\helpers\Html::encode($model->description) ?>
         </div>

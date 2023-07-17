@@ -8,6 +8,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 
 use app\models\Subscriber;
+use yii\data\ActiveDataProvider;
+use common\models\Videos;
+
 /**
  * Channel controller
  */
@@ -32,8 +35,14 @@ class ChannelController extends Controller
     public function actionView($username)
     {
         $channel=$this->findChannel($username);
+
+        $dataProvider=new ActiveDataProvider([
+            'query'=>Videos::find()->creator($channel->id)->published()
+        ]);
+
         return $this->render('view',[
-            'channel'=>$channel
+            'channel'=>$channel,
+            'dataProvider'=>$dataProvider
         ]);
     }
 
