@@ -7,6 +7,7 @@ use common\models\User;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 
+use app\models\Subscriber;
 /**
  * Channel controller
  */
