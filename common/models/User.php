@@ -8,6 +8,9 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
+use yii\db\ActiveQuery;
+
+
 /**
  * User model
  *
@@ -22,7 +25,7 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
- *
+ * 
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -59,8 +62,8 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
         ];
     }
-	
-	/**
+
+    /**
      * @return \yii\db\ActiveQuery
      * @throws  \yii\base\InvalidConfigException
      */
@@ -219,5 +222,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function isSubscribed($userId)
+    {
+        return \app\models\Subscriber::find()->andWhere([
+            'channel_id'=> $this->id,
+            'user_id' => $userId
+        ])->one();
     }
 }
