@@ -57,7 +57,17 @@ class ChannelController extends Controller
           $subscriber->channel_id=$channel->id;
           $subscriber->user_id = $userId;
           $subscriber->created_at=time();
-          $subscriber->save();  
+          $subscriber->save();
+          \Yii::$app->mailer->compose([
+            'html'=>'subscriber-html', 'text'=>'subscriber-text'
+          ], [
+            'channel'=>$channel,
+            'user'=>\Yii::$app->user->identity
+          ])
+                ->setFrom(\Yii::$app->params['senderEmail'])
+                ->setTo($channel->email)
+                ->setSubject('You have new subscriber.')
+                ->send();  
         }else{
             $subscriber->delete();
         }
