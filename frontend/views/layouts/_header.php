@@ -24,6 +24,14 @@ use yii\bootstrap4\NavBar;
             ]
         ];
     }
+    ?>
+    <form action="<?php echo \yii\helpers\Url::to(['/video/search'])?>" class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" 
+                name="keyword" 
+                value="<?php echo Yii::$app->request->get('keyword')?>">
+        <button class="btn btn-outline-success">Search</button>
+      </form>
+    <?php
     //echo \yii\helpers\Url::to(['/site/logout']);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav ml-auto'],
