@@ -24,7 +24,7 @@ class VideoController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['like', 'dislike'],
+                'only' => ['like', 'dislike', 'history'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -135,6 +135,24 @@ class VideoController extends Controller
             'query' => $query
         ]);
         return $this->render('search', [
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+    public function actionHistory()
+    {
+        $query = Videos::find()
+            ->alias('v')
+            ->innerJoin("(SELECT video_id, MAX(created_at) as max_date FROM video_view 
+            WHERE user_id=:userId 
+            GROUP BY video_id) vv",'vv.video_id=v.video_id', [
+                'useId' => Yii::$app->user->id
+            ])
+            ->orderBy("vv.max_date DESC");
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query
+        ]);
+        return $this->render('history', [
             'dataProvider' => $dataProvider
         ]);
     }
