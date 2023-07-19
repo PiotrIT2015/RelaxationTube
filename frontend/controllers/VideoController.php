@@ -63,8 +63,16 @@ class VideoController extends Controller
         $videoView->created_at=time();
         $videoView->save();
 
+        $similarVideos=Videos::find()
+            ->published()
+            ->byKeyword($video->title)
+            ->andWhere(['NOT',['video_id'=>$id]])
+            ->limit(10)
+            ->all();
+
         return $this->render('view', [
-            'model' => $video
+            'model' => $video,
+            'similarVideos' => $similarVideos
         ]);
     }
 

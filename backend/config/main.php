@@ -48,8 +48,9 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'videos/update/<id>'=>'videos/update'
-              //  'http://studio.yii-application.test/'=>'http://studio.yii-application.test:8000/',
+                //'videos/update/<id>'=>'videos/update'
+                '/c/<username>'=>'/channel/view'
+                //'/v/<id>'=>'/video/view',
             ],
         ],
 
