@@ -144,7 +144,7 @@ class VideoController extends Controller
         $query = Videos::find()
             ->alias('v')
             ->innerJoin("(SELECT video_id, MAX(created_at) as max_date FROM video_view 
-            WHERE user_id=:userId 
+            WHERE user_id=1 
             GROUP BY video_id) vv",'vv.video_id=v.video_id', [
                 'useId' => Yii::$app->user->id
             ])
