@@ -13,6 +13,7 @@ $this->title = 'My Yii Application';
 
 <div class="site-index d-flex">
     <div class="card m-2" style="width: 14rem;">
+        <?php if($latestVideo): ?>
         <div class="embed-responsive embed-responsive-16by9 mb-3" style="width: 120px">
             <video class="embeded-responsive-item" 
             poster="<?php echo $latestVideo->getThumbnailLink() ?>"
@@ -30,6 +31,11 @@ $this->title = 'My Yii Application';
                 Edit
             </a>
         </div>
+        <?php else: ?>
+            <div class="card-body">
+                You don't have uploaded videos yet.
+            </div>
+        <?php endif; ?>
     </div>
     <div class="card m-2" style="width: 14rem;">
         <div class="card-body">
