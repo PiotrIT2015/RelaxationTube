@@ -11,13 +11,14 @@
     'options' => [
       'class' => 'd-flex flex-column nav-pills'
     ],
+    'encodeLabels' => false, 
     'items' => [
       [
-        'label' => 'Home',
+        'label' => '<i class="fa-solid fa-house" style="color: #2c511f;"></i> Home',
         'url' => ['/video/index']
       ],
       [
-        'label' => 'History',
+        'label' => '<i class="fa-solid fa-clock-rotate-left" style="color: #2e511f;"></i> History',
         'url' => ['/videos/history']
       ]
     ]
