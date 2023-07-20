@@ -7,7 +7,7 @@ use common\models\User;
 use yii\web\NotFoundHttpException;
 use yii\filters\AccessControl;
 
-use app\models\Subscriber;
+use frontend\models\Subscriber;
 use yii\data\ActiveDataProvider;
 use common\models\Videos;
 
